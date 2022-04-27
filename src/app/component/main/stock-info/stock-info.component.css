@@ -1,0 +1,85 @@
+.center {
+  margin-top: 50px;
+  margin-left: 250px;
+  width: 550px;
+}
+
+body {
+  padding: 100px;
+}
+
+.ibox-content {
+  background-color: #FFFFFF;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #E7EAEC;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0px;
+}
+
+.search-form {
+  margin-top: 10px;
+}
+
+.search-result h3 {
+  margin-bottom: 0;
+  color: black;
+}
+
+.search-result .search-link {
+  color: #006621;
+}
+
+.search-result p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.hr-line-dashed {
+  border-top: 1px dashed #E7EAEC;
+  color: #ffffff;
+  background-color: #ffffff;
+  height: 1px;
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 100;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.custom-checkbox+label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+.custom-checkbox:checked+label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.backlink {
+  margin-left: 200px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+}

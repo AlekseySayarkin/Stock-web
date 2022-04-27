@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">Stock App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <div class="dropdown">
+          <button class="dropbtn">Stocks</button>
+          <div class="dropdown-content">
+            <a routerLink="/search">Search</a>
+            <div *ngIf="authService.token != null && authService.currentUser != null && authService.currentUser.role.name == 'Paid User'">
+              <a routerLink="/subscribed">Subscribed</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="authService.token == null || authService.token == 'null'; else elseBlock">
+          <div class="dropdown">
+            <button class="dropbtn">Profile</button>
+            <div class="dropdown-content">
+              <a routerLink="/login">Login</a>
+              <a routerLink="/signup">Sign Up</a>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div class="dropdown">
+            <button class="dropbtn">Profile</button>
+            <div class="dropdown-content">
+              <a routerLink="/profile">{{authService.currentUser?.login}}</a>
+              <a routerLink="/logout">Log Out</a>
+            </div>
+          </div>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>

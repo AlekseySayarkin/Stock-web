@@ -1,0 +1,24 @@
+<app-header></app-header>
+<body>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0" style="margin-top: 50px; margin-left: 300px">
+        <a routerLink="/home" class="backlink">< go back</a>
+        <div class="card mb-3" style="border-radius: .5rem; text-align: center; height: 200px; width: 200px; margin-left: 200px" >
+          <div class="row g-0">
+            <div class="col-md-8">
+              <div class="card-body p-4" style="text-align: center; height: 00px; width: 200px">
+                <h6>Are you sure you want to log out?</h6>
+                <br>
+                <br>
+                <button type="button" class="btn btn-success" (click)="logout()">Log Out</button>
+                <div class="row pt-1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+</body>

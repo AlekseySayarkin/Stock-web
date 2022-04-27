@@ -1,0 +1,68 @@
+<app-backoffice-header></app-backoffice-header>
+<body>
+
+<ng-template #mymodal let-modal >
+  <div class="modal-header" >
+    <h4 class="modal-title" id="modal-basic-title">Create news</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div style="width: 500px;">
+    <div class="card-body" style="width: 500px;">
+      <form #itemForm="ngForm" novalidate (ngSubmit)="saveNewNews(itemForm)">
+        <h6 class="card-subtitle mb-2 text-muted">Title:
+          <input type="text" id="title" name="title" style="background-color: transparent; width: 400px;border: none; text-align: left;"  required ngModel/>
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">Source:
+          <input type="text" id="source" name="source" style="background-color: transparent; width: 400px;border: none; text-align: left;"  required ngModel/>
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">Is active:
+          <input type="checkbox" id="active" name="active" style="background-color: transparent; width: 400px;border: none; text-align: left;"  required ngModel/>
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">Url:
+          <input type="text" id="url" name="url" style="background-color: transparent; width: 400px;border: none; text-align: left;"   required ngModel/>
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <textarea id="description" name="description" cols="40" rows="5"  style="width: 450px" ngModel></textarea>
+        </h6>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<div class="center">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Create news</button>
+  <br>
+  <br>
+  <div *ngFor="let newsItem of news">
+    <div class="card-backoffice" style="width: 750px;">
+      <div class="card-body" style="width: 750px;">
+        <form #itemForm="ngForm" novalidate (ngSubmit)="saveUser(itemForm, newsItem.id)">
+          <h6 class="card-subtitle mb-2 text-muted">Title:
+            <input type="text" id="title" name="title" style="background-color: transparent; width: 650px;border: none; text-align: left;"  [(ngModel)]="newsItem.title" required ngModel/>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">Source:
+            <input type="text" id="source" name="source" style="background-color: transparent; width: 650px;border: none; text-align: left;"  [(ngModel)]="newsItem.source" required ngModel/>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">Is active:
+            <input type="checkbox" id="active" name="active" style="background-color: transparent; width: 650px;border: none; text-align: left;"  [(ngModel)]="newsItem.active" required ngModel/>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">Url:
+            <input type="text" id="url" name="url" style="background-color: transparent; width: 650px;border: none; text-align: left;"  [(ngModel)]="newsItem.url" required ngModel/>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <textarea name="description" cols="40" rows="5"  style="width: 650px" [(ngModel)]="newsItem.description" ></textarea>
+          </h6>
+          <button class="btn btn-success">save</button>&nbsp;&nbsp;
+          <button class="btn btn-secondary" (click)="sendNews(newsItem.id)">send</button>
+        </form>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+</body>

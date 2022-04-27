@@ -1,0 +1,52 @@
+<app-header></app-header>
+<body>
+<section class="vh-100">
+  <div class="container py-5 h-100" style="margin-top: 70px">
+    <a routerLink="/profile" class="backlink">< go back</a>
+    <div class="col col-lg-6 mb-4 mb-lg-0" style="margin-top: 50px; margin-left: 300px">
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="Avatar"
+                class="img-fluid my-5"
+                style="width: 80px;"
+              />
+              <form #itemForm="ngForm" (ngSubmit)="saveUser(itemForm)" novalidate>
+                <input style="background-color: transparent; border: none; text-align: center; " type="text" id="login" name="login" required ngModel [placeholder]="editUser?.login">
+                <p>{{authService.currentUser.role?.name}}</p>
+                <button class="btn btn-success" style="color: white">Save profile</button>
+              </form>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Subscription</h6>
+                    <div *ngIf="authService.currentUser.role?.name == 'User'; else elseBlock">
+                      <p class="text-muted">No</p>
+                    </div>
+                    <ng-template #elseBlock>
+                      <p class="text-muted">Yes</p>
+                    </ng-template>
+                  </div>
+                </div>
+                <h6>Following Stocks</h6>
+                <ul>
+                  <li *ngFor="let stock of authService.currentUser.systemStocks">
+                    {{stock.symbol}}
+                    <button style="background-color: transparent; border: none; font-size:24px; color: red" class="fa" (click)="deleteStock(stock.id)">-</button>
+                    <div class="hr-line-dashed"></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+</body>

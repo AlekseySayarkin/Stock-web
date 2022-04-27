@@ -1,0 +1,49 @@
+<app-header></app-header>
+<body>
+<section class="vh-100">
+  <div class="container py-5 h-100" style="margin-top: 70px">
+    <a routerLink="/home" class="backlink">< go back</a>
+    <div class="col col-lg-6 mb-4 mb-lg-0" style="margin-top: 50px; margin-left: 300px">
+      <div class="card mb-3" style="border-radius: .5rem;">
+        <div class="row g-0">
+          <div class="col-md-4 gradient-custom text-center text-white" style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+              alt="Avatar"
+              class="img-fluid my-5"
+              style="width: 80px;"
+            />
+            <h5>{{authService.currentUser.login}}</h5>
+            <p>{{authService.currentUser.role?.name}}</p>
+            <a class="nav-link" style="color: indianred" routerLink="/edit">Edit profile</a>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body p-4">
+              <h6>Information</h6>
+              <hr class="mt-0 mb-4">
+              <div class="row pt-1">
+                <div class="col-6 mb-3">
+                  <h6>Subscription</h6>
+                  <div *ngIf="authService.currentUser.role?.name == 'User'; else elseBlock">
+                    <p class="text-muted">No</p>
+                  </div>
+                  <ng-template #elseBlock>
+                    <p class="text-muted">Yes</p>
+                  </ng-template>
+                </div>
+              </div>
+              <h6>Following Stocks</h6>
+              <ul>
+                <li *ngFor="let stock of authService.currentUser.systemStocks">
+                  {{stock.symbol}}
+                  <div class="hr-line-dashed"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>

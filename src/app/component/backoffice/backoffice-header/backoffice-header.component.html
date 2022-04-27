@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand">Backoffice</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/backoffice/users">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/backoffice/users">Users</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/backoffice/news">News</a>
+        </li>
+        <div class="dropdown">
+          <button class="dropbtn">Profile</button>
+          <div class="dropdown-content">
+            <a routerLink="/backoffice/logout">Log Out</a>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+

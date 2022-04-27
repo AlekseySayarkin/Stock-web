@@ -1,0 +1,11 @@
+<app-header></app-header>
+<body>
+  <a routerLink="/home" class="backlink">< go back</a>
+  <div class="center-search" style="width: 500px; margin-left: 500px">
+    <form #itemForm="ngForm" (ngSubmit)="findStock(itemForm)" class="input-group" novalidate>
+      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="symbol" ngModel/>
+      <button class="btn btn-outline-primary">search</button>
+    </form>
+  </div>
+  <h5 style="color: red; margin-left: 500px">{{errorMessage || ""}}</h5>
+</body>

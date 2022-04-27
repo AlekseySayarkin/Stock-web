@@ -1,0 +1,29 @@
+<app-backoffice-header></app-backoffice-header>
+<body>
+<div class="center">
+  <div *ngFor="let user of users">
+    <div *ngIf="user.role.name != 'Admin'">
+      <div class="card-backoffice" style="width: 18rem;">
+        <div class="card-body">
+          <form #itemForm="ngForm" (ngSubmit)="saveUser(itemForm, user.login)" novalidate>
+            <h6 class="card-subtitle mb-2 text-muted">Login: <input style="background-color: transparent; border: none; text-align: left; width: 100px" type="text" id="login" name="login" required ngModel [placeholder]="user.login">
+              &nbsp;&nbsp;
+              <button class="btn btn-primary btn-sm" style="padding: 1px 5px;">save</button>
+            </h6>
+          </form>
+          <h6 class="card-subtitle mb-2 text-muted">Role: {{user.role.name}}</h6>
+          <div *ngIf="user.role.name == 'Paid User'">
+            <button class="btn btn-success" (click)="unsubscribe(user.login)">Unsubscribe</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="deleteUser(user.login)">Delete user</button>
+          </div>
+          <div *ngIf="user.role.name == 'User'">
+            <button class="btn btn-success" (click)="subscribe(user.login)">Subscribe</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="deleteUser(user.login)">Delete user</button>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+</body>

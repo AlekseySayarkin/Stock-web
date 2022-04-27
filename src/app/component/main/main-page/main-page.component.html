@@ -1,0 +1,101 @@
+<app-header></app-header>
+<body>
+<div style="margin-left: 200px">
+<ul class="nav nav-pills">
+  <div *ngIf="activeStocks == 'US'; else elseBlock">
+    <li class="nav-item">
+      <button class="nav-link active" (click)="changeActive('US')">US</button>
+    </li>
+  </div>
+  <ng-template #elseBlock>
+    <li class="nav-item">
+      <button class="nav-link" (click)="changeActive('US')">US</button>
+    </li>
+  </ng-template>
+  <div *ngIf="activeStocks == 'Europe'; else elseBlock1">
+    <li class="nav-item">
+      <button class="nav-link active" (click)="changeActive('Europe')">Europe</button>
+    </li>
+  </div>
+  <ng-template #elseBlock1>
+    <li class="nav-item">
+      <button class="nav-link" (click)="changeActive('Europe')">Europe</button>
+    </li>
+  </ng-template>
+  <div *ngIf="activeStocks == 'Asia'; else elseBlock2">
+    <li class="nav-item">
+      <button class="nav-link active" (click)="changeActive('Asia')">Asia</button>
+    </li>
+  </div>
+  <ng-template #elseBlock2>
+    <li class="nav-item">
+      <button class="nav-link" (click)="changeActive('Asia')">Asia</button>
+    </li>
+  </ng-template>
+</ul>
+<div *ngIf="activeStocks == 'US'">
+  <div class="d-flex flex-row" style="padding-top: 10px">
+    <div *ngFor="let stock of usStocks">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem; margin-left: 10px">
+        <div class="card-header" style="text-align: center"><a style="outline: 0 !important; text-decoration: none !important; color: white" routerLink="/stocks/{{stock.symbol}}"> {{stock.symbol}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{stock.quote.open}} {{stock.currency}}</div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">{{stock.name}}</h5>
+          <p class="card-text" style="text-align: center">{{stock.stockExchange}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="activeStocks == 'Europe'">
+  <div class="d-flex flex-row" style="padding-top: 10px">
+    <div *ngFor="let stock of euStocks">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem; margin-left: 10px">
+        <div class="card-header" style="text-align: center"><a style="outline: 0 !important; text-decoration: none !important; color: white" routerLink="/stocks/{{stock.symbol}}"> {{stock.symbol}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{stock.quote.open}} {{stock.currency}}</div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">{{stock.name}}</h5>
+          <p class="card-text" style="text-align: center">{{stock.stockExchange}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="activeStocks == 'Asia'">
+  <div class="d-flex flex-row" style="padding-top: 10px">
+    <div *ngFor="let stock of asiaStocks">
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem; margin-left: 10px">
+        <div class="card-header" style="text-align: center"><a style="outline: 0 !important; text-decoration: none !important; color: white" routerLink="/stocks/{{stock.symbol}}"> {{stock.symbol}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{stock.quote.open}} {{stock.currency}}</div>
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">{{stock.name}}</h5>
+          <p class="card-text" style="text-align: center">{{stock.stockExchange}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container bootstrap snippets bootdey">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <ul>
+            <h1>Top news</h1>
+            <div class="hr-line-dashed"></div>
+            <li *ngFor="let news of topNews">
+              <div class="search-result">
+                <h3>{{news.title}} <br> <h5>{{news.source}}</h5> </h3>
+                <a href="{{news.url}}" class="search-link">{{news.url}}</a>
+                <p>
+                  {{news.description}}
+                </p>
+              </div>
+              <div class="hr-line-dashed"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

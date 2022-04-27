@@ -1,0 +1,32 @@
+<app-backoffice-header></app-backoffice-header>
+<section class="myform-area">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="form-area login-form">
+          <div class="form-content">
+            <h2>Welcome</h2>
+          </div>
+          <div class="form-input">
+            <h2>Stocks App</h2>
+            <h5 style="color: red">{{errorMessage || ""}}</h5>
+            <form #itemForm="ngForm" (ngSubmit)="loginAdmin(itemForm)" novalidate>
+              <div class="form-group">
+                <input type="text" id="login" name="login" required ngModel>
+                <label>User Login</label>
+              </div>
+              <div class="form-group">
+                <input type="password" id="password" name="password" required ngModel>
+                <label>Password</label>
+              </div>
+              <div class="myform-button">
+                <button class="myform-btn">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<router-outlet></router-outlet>

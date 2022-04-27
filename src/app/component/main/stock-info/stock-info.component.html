@@ -1,0 +1,151 @@
+<app-header></app-header>
+<body>
+<a routerLink="/search" class="backlink">< go back</a>
+<div class="center">
+  <div class="ibox-content" style="width: 1100px; height: 900px; border-radius: 25px;">
+    <ul *ngIf="checkBox.checked; else elseBlock1">
+      <igx-financial-chart  width="1000px" height="550px"
+                            [dataSource]="prediction"
+                            [tooltipTemplate]="valueTooltip"
+                            isToolbarVisible="false"
+                            chartType="Candle"
+                            yAxisLabelLocation="OutsideLeft"
+                            yAxisMode="Numeric"
+                            yAxisTitle="{{stock.symbol}}"
+                            yAxisTitleLeftMargin="0"
+                            yAxisTitleRightMargin="0"
+                            yAxisLabelLeftMargin="0">
+      </igx-financial-chart>
+    </ul>
+    <ng-template #elseBlock1>
+      <igx-financial-chart  width="1000px" height="550px"
+                            [dataSource]="data"
+                            [tooltipTemplate]="valueTooltip"
+                            isToolbarVisible="false"
+                            chartType="Candle"
+                            yAxisLabelLocation="OutsideLeft"
+                            yAxisMode="Numeric"
+                            yAxisTitle="{{stock.symbol}}"
+                            yAxisTitleLeftMargin="0"
+                            yAxisTitleRightMargin="0"
+                            yAxisLabelLeftMargin="0">
+      </igx-financial-chart>
+    </ng-template>
+
+    <input class="custom-checkbox" type="checkbox" id="checkedBox" (change)="true" [hidden]="!(authService.token != null && authService.currentUser.role.name == 'Paid User')" #checkBox/>
+    <label for="checkedBox" [hidden]="!(authService.token != null && authService.currentUser.role.name == 'Paid User')">With Prediction</label>
+
+    <div class="hr-line-dashed"></div>
+    <div class="row">
+      <caption>Stock symbol: {{stock.symbol}}</caption>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Currency</th>
+          <th>Price</th>
+          <th>Previous close</th>
+        </tr>
+        <tr>
+          <td>{{stock.name}}</td>
+          <td>{{stock.currency}}</td>
+          <td>{{stock.quote.open}}</td>
+          <td>{{stock.quote.previousClose}}</td>
+        </tr>
+      </table>
+      <div class="hr-line-dashed"></div>
+
+      <div *ngIf="authService.token != null && authService.currentUser.role.name == 'Paid User'">
+        <div *ngIf="contains(); else elseBlock">
+          <button class="btn-danger" style="margin-left: 450px; margin-top: 20px; border-radius: 25px;" (click)="unsubscribe(stock.symbol)">Unsubscribe</button>
+        </div>
+        <ng-template #elseBlock>
+          <button class="btn-success" (click)="subscribe(stock.symbol)" style="margin-left: 450px; margin-top: 20px; border-radius: 25px;">Subscribe</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="authService.token != null && authService.currentUser.role?.name == 'Paid User'; else elseBlock">
+    <div *ngIf="stockNews != null && stockNews.length > 0; else elseBlock">
+      <div class="container bootstrap snippets bootdey" style="width: 1100px; height: 900px; padding-top: 100px;">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+              <div class="ibox-content">
+                <ul>
+                  <h1>{{stock.name}} news</h1>
+                  <div class="hr-line-dashed"></div>
+                  <li *ngFor="let news of stockNews">
+                    <div class="search-result">
+                      <h3>{{news.title}} <br> <h5>{{news.source}}</h5> </h3>
+                      <a href="{{news.url}}" class="search-link">{{news.url}}</a>
+                      <p>
+                        {{news.description}}
+                      </p>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <div class="container bootstrap snippets bootdey" style="width: 1100px; padding-top: 100px;">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+              <div class="ibox-content">
+                <ul>
+                  <h1>Unable to find news about {{stock.name}}</h1>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #elseBlock>
+    <a style="text-decoration: none;" href="#"><h1 style="margin-top: 50px; width: 500px; color: RGB(146, 168, 209)">Subscribe to see news</h1></a>
+    <div class="container bootstrap snippets bootdey" style="width: 1100px; filter: blur(5px)">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+            <div class="ibox-content">
+              <ul>
+                <h1>{{stock.name}} news</h1>
+                <div class="hr-line-dashed"></div>
+                <li *ngFor="let news of stockNews">
+                  <div class="search-result">
+                    <h3>{{news.title}} <br> <h5>{{news.source}}</h5> </h3>
+                    <a href="{{news.url}}" class="search-link">{{news.url}}</a>
+                    <p>
+                      {{news.description}}
+                    </p>
+                  </div>
+                  <div class="hr-line-dashed"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+</body>
+
+<ng-template let-series="series" let-item="item" #valueTooltip>
+  <div>
+    <span [style.color]="series.actualBrush">{{stock.name}}</span><br>
+    <span>Open: {{item.Open}}</span><br>
+    <span>High: {{item.High}}</span><br>
+    <span>Low: {{item.Low}}</span><br>
+    <span>Close: {{item.Close}}</span><br>
+    <span>Volume: {{item.Volume}}</span><br>
+    <span>Data: {{item.Date.toString().substring(0, 15)}}</span><br>
+  </div>
+</ng-template>

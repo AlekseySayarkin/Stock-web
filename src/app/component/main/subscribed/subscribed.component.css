@@ -1,0 +1,21 @@
+body {
+  padding: 100px;
+}
+
+.center {
+  margin-top: 50px;
+  margin-left: 600px;
+}
+
+.card text-white bg-success mb-3 {
+  margin-top: 10px;
+  padding: 200px;
+}
+
+.backlink {
+  margin-left: 400px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+}

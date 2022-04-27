@@ -1,0 +1,35 @@
+<app-header></app-header>
+<body>
+<section class="myform-area">
+  <a routerLink="/home" class="backlink">< go back</a>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="form-area login-form">
+          <div class="form-content">
+            <h2>Welcome</h2>
+            <p> By logging in I give my consent for collecting the information I have provided in this form for the purpose of news, updates and marketing. </p>
+          </div>
+          <div class="form-input">
+            <h2>Stocks App</h2>
+            <h5 style="color: red">{{errorMessage || ""}}</h5>
+            <form #itemForm="ngForm" (ngSubmit)="loginUser(itemForm)" novalidate>
+              <div class="form-group">
+                <input type="text" id="login" name="login" required ngModel>
+                <label>User Login</label>
+              </div>
+              <div class="form-group">
+                <input type="password" id="password" name="password" required ngModel>
+                <label>Password</label>
+              </div>
+              <div class="myform-button">
+                <button class="myform-btn">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
